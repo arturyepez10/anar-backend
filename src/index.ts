@@ -5,6 +5,7 @@ import morgan from 'morgan';
 
 import { config } from '../config';
 import apiRouter from './routes';
+import { initConnection } from './database/config';
 
 const app: Application = express();
 
@@ -14,6 +15,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(morgan('combined'));
+
+// We initialize and sync the database connection
+initConnection();
 
 app.use(apiRouter);
 
