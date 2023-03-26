@@ -17,7 +17,8 @@ User.init(
   {
     id: {
       type: DataTypes.UUID,
-      primaryKey: true
+      primaryKey: true,
+      defaultValue: DataTypes.UUID // generates an UUID automatically for every created instance
     },
     name: {
       type: DataTypes.STRING,
