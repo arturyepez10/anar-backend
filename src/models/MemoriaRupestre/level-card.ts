@@ -11,18 +11,10 @@ class LevelCard extends Model {
 LevelCard.init(
   {
     level_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: Level,
-        key: 'id'
-      }
+      type: DataTypes.INTEGER
     },
     card_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: Card,
-        key: 'id'
-      }
+      type: DataTypes.INTEGER
     }
   },
   {
@@ -31,8 +23,5 @@ LevelCard.init(
     tableName: 'associates'
   }
 );
-
-Level.belongsToMany(Card, { through: LevelCard, foreignKey: 'level_id' });
-Card.belongsToMany(Level, { through: LevelCard, foreignKey: 'card_id' });
 
 export { LevelCard };

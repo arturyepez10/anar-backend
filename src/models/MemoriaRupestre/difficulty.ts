@@ -25,8 +25,5 @@ Difficulty.init(
   }
 );
 
-// Define the "has" relation
-Difficulty.hasMany(Level);
-Level.belongsTo(Difficulty, { foreignKey: "difficulty" });
 
 export { Difficulty };

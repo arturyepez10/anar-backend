@@ -6,8 +6,9 @@ class Level extends Model {
   declare name: string;
   declare description: string;
   declare imageName: string;
+
   declare goes_to: number;
-  declare difficulty: string;
+  declare difficulty_id: string;
 }
 
 Level.init(
@@ -37,7 +38,7 @@ Level.init(
       type: DataTypes.INTEGER,
       allowNull: true
     },
-    difficulty: {
+    difficulty_id: {
       type: DataTypes.STRING,
       allowNull: false
     }
@@ -48,9 +49,5 @@ Level.init(
     tableName: 'levels'
   }
 );
-
-// Define the "goes_to" relation
-Level.hasOne(Level, { foreignKey: 'goes_before' });
-Level.belongsTo(Level, { foreignKey: 'goes_after' })
 
 export { Level };

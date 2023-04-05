@@ -1,44 +1,48 @@
 import { DataTypes, Model } from 'sequelize';
-import { sequelize } from '../database';
+import { sequelize } from '../../database';
+import { Email } from '../email';
 
-export class User extends Model {
+class UserAccount extends Model {
   declare id: string;
-  declare name: string;
+  declare first_name: string;
   declare last_name: string;
-  declare email: string;
-  declare password: string;
+  declare gender?: string;
+  declare age?: number;
 
   public getFullName(): string {
-    return `${this.name} ${this.last_name}`;
+    return `${this.first_name} ${this.last_name}`;
   }
 };
 
-User.init(
+UserAccount.init(
   {
     id: {
       type: DataTypes.UUID,
       primaryKey: true,
       defaultValue: DataTypes.UUID // generates an UUID automatically for every created instance
     },
-    name: {
+    first_name: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: false
     },
     last_name: {
       type: DataTypes.STRING,
+      allowNull: false
+    },
+    gender: {
+      type: DataTypes.STRING,
       allowNull: true
     },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false
+    age: {
+      type: DataTypes.INTEGER,
+      allowNull: true
     }
   },
   {
     sequelize,
-    modelName: 'User'
+    modelName: 'UserAccount'
   }
 );
+
+
+export { UserAccount };
