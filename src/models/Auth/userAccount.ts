@@ -1,6 +1,5 @@
 import { DataTypes, Model } from 'sequelize';
 import { sequelize } from '../../database';
-import { Email } from '../email';
 
 class UserAccount extends Model {
   declare id: string;

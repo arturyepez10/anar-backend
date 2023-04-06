@@ -37,7 +37,7 @@ export const defineRelations = async () => {
 
   // userRole-permission
   UserRole.belongsToMany(Permission, { through: UserRolePermission, foreignKey: 'role_id' });
-  Permission.belongsToMany(UserRole, { through: UserRolePermission, foreignKey: 'name' });
+  Permission.belongsToMany(UserRole, { through: UserRolePermission, foreignKey: 'permission_id' });
 
   // userRole-userAuthData
   UserRole.belongsToMany(UserAuthData, { through: RoleAuthData, foreignKey: 'role' });

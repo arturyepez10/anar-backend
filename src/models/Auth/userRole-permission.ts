@@ -1,7 +1,5 @@
 import { DataTypes, Model } from 'sequelize';
 import { sequelize } from '../../database';
-import { Permission } from './permission';
-import { UserRole } from './userRole';
 
 class UserRolePermission extends Model {
   declare role_id: string;
@@ -11,10 +9,12 @@ class UserRolePermission extends Model {
 UserRolePermission.init(
   {
     role_id: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      primaryKey: true
     },
     permission_id: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      primaryKey: true
     }
   },
   {

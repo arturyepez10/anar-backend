@@ -7,8 +7,8 @@ export * from "./institution";
 export * from "./Auth/userAccount-institution";
 export * from "./Auth/hashingAlgorithm";
 export * from "./Auth/userAuthData";
-export * from "./Auth/permission";
 export * from "./Auth/userRole";
+export * from "./Auth/permission";
 export * from "./Auth/userRole-permission";
 export * from "./Auth/userRole-userAuthData";
 

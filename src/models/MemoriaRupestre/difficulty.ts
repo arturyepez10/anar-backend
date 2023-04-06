@@ -1,6 +1,5 @@
 import { DataTypes, Model } from 'sequelize';
 import { sequelize } from '../../database';
-import { Level } from './level';
 
 class Difficulty extends Model {
   declare name: string;
