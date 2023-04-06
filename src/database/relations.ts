@@ -1,7 +1,7 @@
 import { sequelize } from '.';
 import * as models from '../models';
 
-export const defineRelations = async () => {
+export const defineRelations = async (alter = false) => {
   const {
     UserAccount,
     Institution,
@@ -27,6 +27,9 @@ export const defineRelations = async () => {
   // userAccount
   UserAccount.hasMany(Email, { as: 'emails', foreignKey: 'user_id' });
   Email.belongsTo(UserAccount, { foreignKey: 'user_id' });
+
+  UserAccount.hasOne(UserAuthData, { foreignKey: 'user_id' });
+  UserAuthData.belongsTo(UserAccount, { foreignKey: 'user_id' });
 
   // userAuthData
   UserAuthData.hasOne(Email, { foreignKey: 'email' });
@@ -59,5 +62,5 @@ export const defineRelations = async () => {
   Card.belongsToMany(Level, { through: LevelCard, foreignKey: 'card_id' });
 
   // We update the database schema
-  await sequelize.sync({ alter: true });
+  await sequelize.sync({ alter });
 }

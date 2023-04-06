@@ -8,6 +8,8 @@ class UserAccount extends Model {
   declare gender?: string;
   declare age?: number;
 
+  declare auth_data?: string;
+
   public getFullName(): string {
     return `${this.first_name} ${this.last_name}`;
   }
@@ -35,6 +37,9 @@ UserAccount.init(
     age: {
       type: DataTypes.INTEGER,
       allowNull: true
+    },
+    auth_data: {
+      type: DataTypes.UUID
     }
   },
   {
