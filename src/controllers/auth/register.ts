@@ -1,20 +1,21 @@
 import { Request, Response } from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import { v4 as uuidv4 } from 'uuid';
 import { handleError } from '../../utils/errors';
 import { UserAuthData, Email, UserAccount } from '../../models';
 import { config } from '../../../config';
 
 export const registerController = async (req: Request, res: Response) => {
-  try {
-    const {
-      email,
-      password,
-      first_name,
-      last_name,
-      username
-    } = req.body;
+  const {
+    email,
+    password,
+    first_name,
+    last_name,
+    username
+  } = req.body;
 
+  try {
     // Check if email exists in the database
     let bdEmail = await Email.findOne({ where: { address: email }, attributes: ['address', 'user_auth', 'user_id'] });
 
@@ -32,6 +33,7 @@ export const registerController = async (req: Request, res: Response) => {
 
     // We create a new user account and then associate it with the email
     const userAuth = await UserAccount.create({
+      id: uuidv4(),
       first_name,
       last_name,
     });
@@ -58,7 +60,15 @@ export const registerController = async (req: Request, res: Response) => {
 
     res.status(201).json({ token });
   } catch (error) {
-    // TODO: if something fails, we shold delete the user account and auth data
+    // If something fails, we shold delete the user account and auth data}
+    await UserAccount.destroy({ where: { email } });
+    await UserAuthData.destroy({ where: { email } });
+
+    // Check if email exists in the database
+    let bdEmail = await Email.findOne({ where: { address: email }, attributes: ['address', 'user_auth', 'user_id'] });
+
+    // If email exist and is associated with an account, we deassociate it
+    if (bdEmail && bdEmail.user_auth) await Email.update({ user_auth: null }, { where: { address: email } });
 
     handleError(res, error);
   }
