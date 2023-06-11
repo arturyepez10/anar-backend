@@ -33,7 +33,7 @@ export const defineRelations = async (alter = false) => {
 
   // userAuthData
   UserAuthData.hasOne(Email, { foreignKey: 'email' });
-  Email.belongsTo(UserAccount, { foreignKey: 'user_auth' });
+  Email.belongsTo(UserAccount, { foreignKey: 'user_auth' }); // TODO: here should be the model of UserAuthData
 
   HashingAlgorithm.hasMany(UserAuthData);
   UserAuthData.belongsTo(HashingAlgorithm, { foreignKey: 'hash_algorithm' });
