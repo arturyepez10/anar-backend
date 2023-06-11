@@ -19,7 +19,7 @@ app.use(morgan('combined'));
 // We initialize and sync the database connection
 initConnection();
 
-app.use(apiRouter);
+app.use("/api", apiRouter);
 
 app.listen(config.APP_PORT, () => {
   console.log(`Server is running on PORT ${config.APP_PORT}`)

@@ -1,11 +1,14 @@
 import { DataTypes, Model } from 'sequelize';
-import { sequelize } from '../database';
+import { sequelize } from '../../database';
 
-export class Level extends Model {
+class Level extends Model {
   declare id: number;
   declare name: string;
   declare description: string;
   declare imageName: string;
+
+  declare goes_to: number;
+  declare difficulty_id: string;
 }
 
 Level.init(
@@ -26,10 +29,25 @@ Level.init(
     imageName: {
       type: DataTypes.STRING,
       allowNull: true
+    },
+    goes_after: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    goes_before: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    difficulty_id: {
+      type: DataTypes.STRING,
+      allowNull: false
     }
   },
   {
     sequelize,
-    modelName: 'Level'
+    modelName: 'Level',
+    tableName: 'levels'
   }
 );
+
+export { Level };

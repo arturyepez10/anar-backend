@@ -10,4 +10,5 @@ export const config = {
   DATABASE_HOST: process.env.DATABASE_HOST ?? "localhost",
   DATABASE_PORT: process.env.DATABASE_PORT ? +process.env.DATABASE_PORT : 3306,
   DATABASE_DIALECT: process.env.DATABASE_DIALECT ?? "mysql",
+  JWT_SECRET: process.env.JWT_SECRET ?? "",
 }

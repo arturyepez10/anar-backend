@@ -1,5 +1,6 @@
 import { sequelize } from '.';
 import * as models from '../models';
+import { defineRelations } from './relations';
 
 
 export const syncModels = async (alter = false) => {
@@ -18,6 +19,7 @@ export const initConnection = async () => {
     await sequelize.authenticate();
     console.log("Connection to DB has been established successfully.");
     await syncModels();
+    await defineRelations();
   } catch (error) {
     console.error("Unable to connect to the database:", error);
   }

@@ -1,24 +1,26 @@
 import { DataTypes, Model } from 'sequelize';
 import { sequelize } from '../database';
 
-export class Difficulty extends Model {
+class Application extends Model {
   declare name: string;
-  declare time: number;
+  declare description: string;
 }
 
-Difficulty.init(
+Application.init(
   {
     name: {
       type: DataTypes.STRING,
       primaryKey: true
     },
-    time: {
-      type: DataTypes.INTEGER,
+    description: {
+      type: DataTypes.STRING,
       allowNull: false
     }
   },
   {
     sequelize,
-    modelName: 'Difficulty'
+    modelName: 'Application'
   }
 );
+
+export { Application };
