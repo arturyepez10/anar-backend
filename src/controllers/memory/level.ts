@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { handleError } from '../../utils/errors';
-import { Level, Difficulty } from '../../models';
+import { Level, Difficulty, LevelCard } from '../../models';
 
 
 export const getLevelsController = async (req: Request, res: Response) => {
@@ -111,6 +111,7 @@ export const deleteLevelController = async (req: Request, res: Response) => {
     }
 
     await level.destroy();
+    await LevelCard.destroy({ where: { level_id: id } });
 
     res.status(200).json({ message: 'Level deleted' });
   } catch (error) {

@@ -60,7 +60,6 @@ export const createCardController = async (req: Request, res: Response) => {
   }
 }
 
-// TODO: agregar la asociación con el nivel?
 export const updateCardController = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
@@ -111,6 +110,7 @@ export const deleteCardController = async (req: Request, res: Response) => {
     }
 
     await card.destroy();
+    await LevelCard.destroy({ where: { card_id: id } });
 
     res.status(200).json({ message: 'Card deleted' });
   } catch (error) {
