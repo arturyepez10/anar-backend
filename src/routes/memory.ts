@@ -24,16 +24,33 @@ import {
 import { validateBody, validateParams } from "../middleware/data-validation";
 import { difficultyIdParamSchema, difficultySchema, difficultyUpdateSchema } from "../validators/MemoriaRupestre/difficulty";
 import { levelIdParamSchema, levelSchema } from "../validators/MemoriaRupestre/level";
-import { cardIdParamSchema } from "../validators/MemoriaRupestre/card";
+import { cardIdParamSchema, cardSchema, cardUpdateSchema } from "../validators/MemoriaRupestre/card";
 
 const router = Router();
 
 // Difficulty
 router.get("/difficulty/", getDifficultiesController);
-router.get("/difficulty/:name", validateParams(difficultyIdParamSchema), gettDifficultyController);
-router.post("/difficulty/", validateBody(difficultySchema), createDifficultyController);
-router.put("/difficulty/:name", validateParams(difficultyIdParamSchema), validateBody(difficultyUpdateSchema), updateDifficultyController);
-router.delete("/difficulty/:name", validateParams(difficultyIdParamSchema), deleteDifficultyController);
+router.get(
+  "/difficulty/:name",
+  validateParams(difficultyIdParamSchema),
+  gettDifficultyController
+);
+router.post(
+  "/difficulty/",
+  validateBody(difficultySchema),
+  createDifficultyController
+);
+router.put(
+  "/difficulty/:name",
+  validateParams(difficultyIdParamSchema),
+  validateBody(difficultyUpdateSchema),
+  updateDifficultyController
+);
+router.delete(
+  "/difficulty/:name",
+  validateParams(difficultyIdParamSchema),
+  deleteDifficultyController
+);
 
 // Level
 router.get("/level/", getLevelsController);
@@ -68,13 +85,13 @@ router.get(
 );
 router.post(
   "/card/",
-  validateBody(levelSchema),
+  validateBody(cardSchema),
   createCardController
 );
 router.put(
   "/card/:id",
   validateParams(cardIdParamSchema),
-  validateBody(levelSchema),
+  validateBody(cardUpdateSchema),
   updateCardController
 );
 router.delete(

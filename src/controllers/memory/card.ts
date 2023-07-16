@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { handleError } from '../../utils/errors';
-import { Card, LevelCard } from '../../models';
+import { Card, Level, LevelCard } from '../../models';
 
 export const getCardsController = async (req: Request, res: Response) => {
   try {
@@ -43,10 +43,16 @@ export const createCardController = async (req: Request, res: Response) => {
       image
     });
 
-    // TODO: agregar la asociación con el nivel
-    // if (levelId) {
+    if (levelId) {
+      const level = await Level.findOne({ where: { id: levelId } });
 
-    // }
+      if (level) {
+        await LevelCard.create({
+          level_id: levelId,
+          card_id: card.id
+        });
+      }
+    }
 
     res.status(201).json(card);
   } catch (error) {
@@ -61,7 +67,8 @@ export const updateCardController = async (req: Request, res: Response) => {
     const {
       name,
       description,
-      image
+      image,
+      levelId
     } = req.body;
 
     const card = await Card.findOne({ where: { id } });
@@ -75,6 +82,17 @@ export const updateCardController = async (req: Request, res: Response) => {
       description,
       image
     });
+
+    if (levelId) {
+      const level = await Level.findOne({ where: { id: levelId } });
+
+      if (level) {
+        await LevelCard.create({
+          level_id: levelId,
+          card_id: card.id
+        });
+      }
+    }
 
     res.status(200).json(card);
   } catch (error) {
