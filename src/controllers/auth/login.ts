@@ -1,15 +1,15 @@
 import { Request, Response } from 'express';
 import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
 import { handleError } from '../../utils/errors';
-import { UserAuthData, Email, UserAccount } from '../../models';
-import { config } from '../../../config';
+import { UserAuthData, Email } from '../../models';
+import { generateJwtAuthString } from '../../utils/auth';
 
 export const loginController = async (req: Request, res: Response) => {
   try {
     const {
       email,
       password,
+      application
     } = req.body;
 
     // Check if email exists in the database
@@ -34,7 +34,7 @@ export const loginController = async (req: Request, res: Response) => {
     }
 
     // Create the token
-    const token = jwt.sign({ id: authUser.user_id }, config.JWT_SECRET, { expiresIn: '1d' });
+    const token = await generateJwtAuthString(authUser, application);
 
     res.status(200).json({ token });
   } catch (error) {
