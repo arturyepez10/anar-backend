@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { v4 as uuidv4 } from 'uuid';
-import { handleError } from '../../utils/errors';
+import { handleError, validatePassword } from '../../utils';
 import { UserAuthData, Email, UserAccount } from '../../models';
 import { config } from '../../../config';
 
@@ -30,6 +30,10 @@ export const registerController = async (req: Request, res: Response) => {
 
     // if email doesn't exist, create it
     if (!bdEmail) bdEmail = await Email.create({ address: email });
+
+    // We validate the password
+    const passwordErrors = validatePassword(password);
+    if (passwordErrors.length > 0) return res.status(404).json({ message: passwordErrors });
 
     // We create a new user account and then associate it with the email
     const userAuth = await UserAccount.create({
