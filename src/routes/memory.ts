@@ -100,6 +100,4 @@ router.delete(
   deleteCardController
 );
 
-// User-Level
-
 export default router;
