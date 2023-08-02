@@ -37,7 +37,7 @@ export const generateJwtAuthString = async (
     }
     jwtAuth.application = application;
     jwtAuth.roles = roles;
-  }
+  };
 
   const token = jwt.sign(jwtAuth, config.JWT_SECRET, { expiresIn });
 
