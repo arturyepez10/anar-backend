@@ -20,11 +20,19 @@ import {
   updateCardController,
   deleteCardController
 } from "../controllers/memory/card";
+import {
+  createTriviaController,
+  deleteTriviaController,
+  getTriviaController,
+  getTriviasController,
+  updateTriviaController,
+} from "../controllers/memory/trivia";
 
 import { validateBody, validateParams } from "../middleware/data-validation";
 import { difficultyIdParamSchema, difficultySchema, difficultyUpdateSchema } from "../validators/MemoriaRupestre/difficulty";
 import { levelIdParamSchema, levelSchema } from "../validators/MemoriaRupestre/level";
 import { cardIdParamSchema, cardSchema, cardUpdateSchema } from "../validators/MemoriaRupestre/card";
+import { triviaIdParamSchema, triviaSchema } from "../validators/MemoriaRupestre/trivia";
 
 const router = Router();
 
@@ -98,6 +106,30 @@ router.delete(
   "/card/:id",
   validateParams(cardIdParamSchema),
   deleteCardController
+);
+
+// Trivia
+router.get("/trivia/", getTriviasController);
+router.get(
+  "/trivia/:id",
+  validateParams(triviaIdParamSchema),
+  getTriviaController
+);
+router.post(
+  "/trivia/",
+  validateBody(triviaSchema),
+  createTriviaController
+);
+router.put(
+  "/trivia/:id",
+  validateParams(triviaIdParamSchema),
+  validateBody(triviaSchema),
+  updateTriviaController
+);
+router.delete(
+  "/trivia/:id",
+  validateParams(triviaIdParamSchema),
+  deleteTriviaController
 );
 
 export default router;
