@@ -33,6 +33,7 @@ import { difficultyIdParamSchema, difficultySchema, difficultyUpdateSchema } fro
 import { levelIdParamSchema, levelSchema } from "../validators/MemoriaRupestre/level";
 import { cardIdParamSchema, cardSchema, cardUpdateSchema } from "../validators/MemoriaRupestre/card";
 import { triviaIdParamSchema, triviaSchema } from "../validators/MemoriaRupestre/trivia";
+import { verifyAuth } from "../middleware/authentication";
 
 const router = Router();
 
@@ -45,17 +46,20 @@ router.get(
 );
 router.post(
   "/difficulty/",
+  verifyAuth,
   validateBody(difficultySchema),
   createDifficultyController
 );
 router.put(
   "/difficulty/:name",
+  verifyAuth,
   validateParams(difficultyIdParamSchema),
   validateBody(difficultyUpdateSchema),
   updateDifficultyController
 );
 router.delete(
   "/difficulty/:name",
+  verifyAuth,
   validateParams(difficultyIdParamSchema),
   deleteDifficultyController
 );
@@ -69,17 +73,20 @@ router.get(
 );
 router.post(
   "/level/",
+  verifyAuth,
   validateBody(levelSchema),
   createLevelController
 );
 router.put(
   "/level/:id",
+  verifyAuth,
   validateParams(levelIdParamSchema),
   validateBody(levelSchema),
   updateLevelController
 );
 router.delete(
   "/level/:id",
+  verifyAuth,
   validateParams(levelIdParamSchema), 
   deleteLevelController
 );
@@ -93,17 +100,20 @@ router.get(
 );
 router.post(
   "/card/",
+  verifyAuth,
   validateBody(cardSchema),
   createCardController
 );
 router.put(
   "/card/:id",
+  verifyAuth,
   validateParams(cardIdParamSchema),
   validateBody(cardUpdateSchema),
   updateCardController
 );
 router.delete(
   "/card/:id",
+  verifyAuth,
   validateParams(cardIdParamSchema),
   deleteCardController
 );
@@ -117,17 +127,20 @@ router.get(
 );
 router.post(
   "/trivia/",
+  verifyAuth,
   validateBody(triviaSchema),
   createTriviaController
 );
 router.put(
   "/trivia/:id",
+  verifyAuth,
   validateParams(triviaIdParamSchema),
   validateBody(triviaSchema),
   updateTriviaController
 );
 router.delete(
   "/trivia/:id",
+  verifyAuth,
   validateParams(triviaIdParamSchema),
   deleteTriviaController
 );
