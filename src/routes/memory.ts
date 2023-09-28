@@ -21,12 +21,12 @@ import {
   deleteCardController
 } from "../controllers/memory/card";
 import {
-  createTriviaController,
-  deleteTriviaController,
-  getTriviaController,
-  getTriviasController,
-  updateTriviaController,
-} from "../controllers/memory/trivia";
+  createKnowledgeController,
+  deleteKnowledgeController,
+  getKnowledgeController,
+  getKnowledgeByIDController,
+  updateKnowledgeController,
+} from "../controllers/memory/knowledge";
 
 import { validateBody, validateParams } from "../middleware/data-validation";
 import { difficultyIdParamSchema, difficultySchema, difficultyUpdateSchema } from "../validators/MemoriaRupestre/difficulty";
@@ -119,30 +119,30 @@ router.delete(
 );
 
 // Trivia
-router.get("/trivia/", getTriviasController);
+router.get("/knowledge/", getKnowledgeController);
 router.get(
-  "/trivia/:id",
+  "/knowledge/:id",
   validateParams(triviaIdParamSchema),
-  getTriviaController
+  getKnowledgeByIDController
 );
 router.post(
-  "/trivia/",
+  "/knowledge/",
   verifyAuth,
   validateBody(triviaSchema),
-  createTriviaController
+  createKnowledgeController
 );
 router.put(
-  "/trivia/:id",
+  "/knowledge/:id",
   verifyAuth,
   validateParams(triviaIdParamSchema),
   validateBody(triviaSchema),
-  updateTriviaController
+  updateKnowledgeController
 );
 router.delete(
-  "/trivia/:id",
+  "/knowledge/:id",
   verifyAuth,
   validateParams(triviaIdParamSchema),
-  deleteTriviaController
+  deleteKnowledgeController
 );
 
 export default router;
