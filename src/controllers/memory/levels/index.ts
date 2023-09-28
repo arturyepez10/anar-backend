@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
-import { handleError } from '../../utils/errors';
-import { Level, Difficulty, LevelCard } from '../../models';
-
+import { handleError } from '../../../utils/errors';
+import { Level, Difficulty, LevelCard } from '../../../models';
 
 export const getLevelsController = async (req: Request, res: Response) => {
   try {

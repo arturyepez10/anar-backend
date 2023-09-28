@@ -1,2 +1,2 @@
 export * from "./difficulty";
-export * from "./level";
+export * from "./levels";

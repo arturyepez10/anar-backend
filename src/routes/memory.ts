@@ -12,7 +12,7 @@ import {
   createLevelController,
   updateLevelController,
   deleteLevelController
-} from "../controllers/memory/level";
+} from "../controllers/memory/levels";
 import {
   getCardsController,
   getCardController,
@@ -34,6 +34,7 @@ import { levelIdParamSchema, levelSchema } from "../validators/MemoriaRupestre/l
 import { cardIdParamSchema, cardSchema, cardUpdateSchema } from "../validators/MemoriaRupestre/card";
 import { triviaIdParamSchema, triviaSchema } from "../validators/MemoriaRupestre/trivia";
 import { verifyAuth } from "../middleware/authentication";
+import { completeLevel, getLevelScores, getLevelUserInfo, getUsersScores } from "../controllers/memory/levels/user-info";
 
 const router = Router();
 
@@ -90,6 +91,12 @@ router.delete(
   validateParams(levelIdParamSchema), 
   deleteLevelController
 );
+
+// Level User
+router.get("/level/:levelId/user/:userId", getLevelUserInfo);
+router.post("/level/:levelId/user/:userId", completeLevel);
+router.get("/level/:levelId/scores", getLevelScores);
+router.get("/users-scores", getUsersScores);
 
 // Card
 router.get("/card/", getCardsController);

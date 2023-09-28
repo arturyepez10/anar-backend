@@ -17,7 +17,9 @@ export const defineRelations = async (alter = false) => {
     Difficulty,
     Level,
     Card,
-    LevelCard
+    LevelCard,
+    LevelUser,
+    Knowledge
   } = models;
   
   // userAccount-institution
@@ -60,6 +62,14 @@ export const defineRelations = async (alter = false) => {
   // level-card
   Level.belongsToMany(Card, { through: LevelCard, foreignKey: 'level_id' });
   Card.belongsToMany(Level, { through: LevelCard, foreignKey: 'card_id' });
+
+  // Level and users (can_play)
+  Level.belongsToMany(UserAccount, { through: LevelUser, foreignKey: 'level_id' });
+  UserAccount.belongsToMany(Level, { through: LevelUser, foreignKey: 'user_id' });
+
+  // trivia TODO: fix
+  // Knowledge.hasOne(Level, { foreignKey: 'level_id' });
+  // Level.belongsTo(Knowledge);
 
   // We update the database schema
   await sequelize.sync({ alter });

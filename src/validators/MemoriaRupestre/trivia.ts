@@ -7,7 +7,7 @@ export const triviaIdParamSchema = Joi.object({
 export const triviaSchema = Joi.object({
   question: Joi.string().required(),
   answer: Joi.string().required(),
-  level_id: Joi.number().required()
+  level_id: Joi.number().optional()
 });
 
 export const triviaUpdateSchema = Joi.object({
