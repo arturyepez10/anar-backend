@@ -12,7 +12,13 @@ export const getLevelUserInfo = async (req: Request, res: Response) => {
       return res.status(400).json({ message: 'Level does not exist' });
     }
 
-    const levelUser = await LevelUser.findOne({ where: { level_id: levelId, user_id: userId } });
+    const user = await UserAuthData.findOne({ where: { username: userId }, attributes: ['user_id'] });
+
+    if (!user) {
+      return res.status(400).json({ message: 'User does not exist' });
+    }
+
+    const levelUser = await LevelUser.findOne({ where: { level_id: levelId, user_id: user.user_id } });
 
     if (!levelUser) {
       return res.status(400).json({ message: 'User information does not exist on the level' });
@@ -28,9 +34,6 @@ export const completeLevel = async (req: Request, res: Response) => {
   try {
     const { levelId, userId } = req.params;
     const { score, status } = req.body;
-
-    console.log(req.body);
-    console.log(req.params);
 
     const level = await Level.findOne({ where: { id: levelId } });
 
