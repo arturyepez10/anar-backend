@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nodemon ./src/index.ts",
     "build": "tsc",
-    "start": "node dist"
+    "start": "node dist",
+    "init": "node ./src/scripts/init.ts"
   },
   "author": "arturyepez10@gmail.com",
   "license": "ISC",
