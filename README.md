@@ -1,5 +1,10 @@
 # SISTEMA ANAR
-#### Autor
+#### Autores
+- Ruby Valencia
+- Alejandro Amaro
+- Arturo Yepez
+
+#### Desarrollador
 - Arturo Yepez
 
 ## Descripción
