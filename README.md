@@ -40,6 +40,8 @@ Ahora, la lista de comandos disponibles incluye:
 * `dev`: Es utilizado para crear un servidor de desarrollo que "escucha" los cambios en todos los archivos disponibles dentro del proyecto, para que cuando detecte un cambio automaticamente se reinicie sin necesidad de algún input extra.
 * `build`: Crea una version estatica del proyecto en version de producción. Esto implica que se hacen algunas optimizaciones que no están disponibles en el servidor de desarrolladores
 * `start`: Comienza un servidor con la ultima versión del proyecto construida.
+* `test`: Ejecuta Jest y todas las pruebas unitarias disponibles dentro del proyecto (ubicadas dentro del directorio `/test`).
+* `init`: Ejecuta un script para instalar todos los valores por defecto necesarios para poder inicializar el Sistema ANAR. Entre las instancias que se inician y se guardan en la base de datos, estas incluyen: Aplicaciones, Algoritmo de Hash por defecto, 1 usuario de prueba.
 
 Si se va a desarrollar contenido nuevo para la aplicación, se recomienda encarecidamente utilziar: `npm run dev` como comando sobre el que trabajar.
 
