@@ -1,7 +1,8 @@
 import { eApplication } from "../classes";
 import { sequelize } from "../database";
 import { initConnection } from "../database/config";
-import { Application, Difficulty, HashingAlgorithm } from "../models";
+import { Application, HashingAlgorithm } from "../models";
+import { createUserMock } from "./mock/functions";
 
 const initialization = async () => {
   await initConnection();
@@ -14,6 +15,7 @@ const initialization = async () => {
   await Application.create({ name: eApplication.memory, description: "Memory game for cave figures." });
 
   // We create the test user
+  await createUserMock();
 
   sequelize.close();
 };
