@@ -12,21 +12,16 @@ export const createUserMock = async () => {
     // Check if email exists in the database
     let bdEmail = await Email.findOne({ where: { address: email }, attributes: ['address', 'user_auth', 'user_id'] });
 
-    // If email exist and is associated with an account, return error
-    if (bdEmail && bdEmail.user_auth) {
-      throw new Error("Email already exist");
-    }
-
     // We chek if the username is already taken
     const authUser = await UserAuthData.findOne({ where: { username }, attributes: ['user_id', 'username', 'password_salt', 'password_hash', 'recovery_time', 'recovery_token', 'email', 'status', 'token_time', 'token_code', 'hash_algorithm', 'createdAt', 'updatedAt'] });
-    if (authUser) throw new Error("Username already exist");
+    if (authUser && bdEmail && bdEmail.user_auth) return false;
 
     // if email doesn't exist, create it
     if (!bdEmail) bdEmail = await Email.create({ address: email });
 
     // We validate the password
     const passwordErrors = validatePassword(password);
-    if (passwordErrors.length > 0) throw new Error("Username already exist");
+    if (passwordErrors.length > 0) throw new Error("Password have an error");
 
     // We create a new user account and then associate it with the email
     const userAuth = await UserAccount.create({
@@ -42,7 +37,7 @@ export const createUserMock = async () => {
     const password_hash = await bcrypt.hash(password, password_salt);
 
     // We create the user auth data
-    const authUserData = await UserAuthData.create({
+    await UserAuthData.create({
       user_id: userAuth.id,
       username,
       password_salt,
@@ -51,6 +46,8 @@ export const createUserMock = async () => {
       status: 'pending',
       hash_algorithm: 'Bcrypt'
     });
+
+    return true;
   } catch (error) {
     // If something fails, we shold delete the user account and auth data}
     await UserAccount.destroy({ where: { email } });

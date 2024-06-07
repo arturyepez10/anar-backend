@@ -7,7 +7,7 @@
     "dev": "nodemon ./src/index.ts",
     "build": "tsc",
     "start": "node dist",
-    "init": "node ./src/scripts/init.ts",
+    "init": "ts-node ./src/scripts/init.ts",
     "test": "jest -c jest.config.ts"
   },
   "author": "arturyepez10@gmail.com",

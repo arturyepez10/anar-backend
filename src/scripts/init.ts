@@ -13,6 +13,8 @@ const initialization = async () => {
   await Application.create({ name: eApplication.anar, description: "Main hub for ANAR applications." });
   await Application.create({ name: eApplication.memory, description: "Memory game for cave figures." });
 
+  // We create the test user
+
   sequelize.close();
 };
 
