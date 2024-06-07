@@ -23,7 +23,6 @@ describe("[UTILS] - getEnumValues()", () => {
   });
 
   it("[FAIL] should return an empty array when enum is null", () => {
-    console.log(typeof null === 'object')
     const values = getEnumValues(null);
     expect(values).toEqual([]);
   });
