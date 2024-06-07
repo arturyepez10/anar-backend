@@ -8,7 +8,8 @@
     "build": "tsc",
     "start": "node dist",
     "init": "ts-node ./src/scripts/init.ts",
-    "test": "jest -c jest.config.ts"
+    "test": "jest -c jest.config.ts",
+    "test:unit": "jest -c jest.config.ts --testPathPattern='\\.(?:unit)\\.test'"
   },
   "author": "arturyepez10@gmail.com",
   "license": "ISC",
