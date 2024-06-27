@@ -19,13 +19,13 @@ En caso de no poseer los requisitos de uso, se recomienda instalar las versiones
 
 Para el caso de NodeJS, se recomienda instalar un manejador de versiones como `nvm` o `n` para poder cambiar entre versiones de NodeJS de manera sencilla.
 
-Se puede encontrar mas informacion sobre el proceso de instalacion en: (https://nodejs.org/en/learn/getting-started/how-to-install-nodejs/)[https://nodejs.org/en/learn/getting-started/how-to-install-nodejs]
+Se puede encontrar mas informacion sobre el proceso de instalacion en: [https://nodejs.org/en/learn/getting-started/how-to-install-nodejs](https://nodejs.org/en/learn/getting-started/how-to-install-nodejs/)
 
 #### Clonar el repositorio
 
 Para poder inicializar el proyecto es necesario poseer una copia del repositorio en tu equipo (maquina local). Para ello, debemos de clonar el repositorio en la carpeta donde deseamos trabajar.
 
-En caso de no conocer el proceso de clonacion de un repositorio, se recomienda visitar la siguiente pagina: (https://phoenixnap.com/kb/git-clone-ssh)[https://phoenixnap.com/kb/git-clone-ssh].
+En caso de no conocer el proceso de clonacion de un repositorio, se recomienda visitar la siguiente pagina: [https://phoenixnap.com/kb/git-clone-ssh](https://phoenixnap.com/kb/git-clone-ssh)
 
 Se recomienda que el proceso de clonacion del repositorio se realice utilizando el protocolo SSH, dado que la plataforma de Github hizo obsoleto el modo de autenticacion HTTPS mediante linea de comandos.
 
@@ -57,6 +57,6 @@ Si se va a desarrollar contenido nuevo para la aplicación, se recomienda encare
 
 ### Postman
 
-Para poder probar las rutas del proyecto, se recomienda utilizar Postman: una plataforma API para facilitar la construccion y documentacion de APIs. Esta herramienta permite a los desarrolladores crear solicitudes HTTP y probar las respuestas de las APIs de una forma sencilla y efectiva. Se puede encontrar el link de descarga en: (https://www.postman.com/)[https://www.postman.com/].
+Para poder probar las rutas del proyecto, se recomienda utilizar Postman: una plataforma API para facilitar la construccion y documentacion de APIs. Esta herramienta permite a los desarrolladores crear solicitudes HTTP y probar las respuestas de las APIs de una forma sencilla y efectiva. Se puede encontrar el link de descarga en: [https://www.postman.com/](https://www.postman.com/).
 
 Este proyecto, cuenta dentro del directorio `resources/` con un archivo de configuracion de Postman que contiene todas las rutas del proyecto. Se recomienda importar este archivo en Postman para poder probar las rutas del proyecto de manera sencilla.
